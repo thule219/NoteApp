@@ -6,15 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="224dp"
+        android:layout_height="203dp"
+        android:src="@drawable/icon_register"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <EditText
         android:id="@+id/emailUser"
         android:layout_width="309dp"
         android:layout_height="42dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Your Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="334dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/password"
@@ -23,48 +37,46 @@
         android:ems="10"
         android:hint="Your password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="387dp" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailUser"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/confirmPass"
         android:layout_width="310dp"
         android:layout_height="54dp"
         android:ems="10"
+        android:layout_marginTop="10dp"
         android:hint="Confirm password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="447dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="273dp"
-        android:layout_height="50dp"
-        android:text="Register"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="272dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="224dp"
-        android:layout_height="203dp"
-        app:srcCompat="@drawable/icon_register"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="52dp" />
+<!--   -->
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="203dp"
         android:layout_height="50dp"
         android:text="Sign Up"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="527dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPass"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alreaday have a account?"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="611dp" />
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="90dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,55 +1,66 @@
 package com.example.todoapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
+
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
 class RegisterActivity : AppCompatActivity() {
 
-    val email = findViewById<EditText>(R.id.emailUser)
-    val password = findViewById<EditText>(R.id.password)
-    val confirm = findViewById<EditText>(R.id.confirmPass)
-    val signup = findViewById<Button>(R.id.btnRegister)
-    val register = Firebase.auth
+    private lateinit var email: EditText
+    private lateinit var password: EditText
+    private lateinit var confirm: EditText
+    private lateinit var signup: Button
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-
-        signup.setOnClickListener { signUp() }
-
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_register)
+            email = findViewById<EditText>(R.id.emailUser)
+            password = findViewById<EditText>(R.id.password)
+            confirm = findViewById<EditText>(R.id.confirmPass)
+            signup = findViewById<Button>(R.id.btnRegister)
+            auth = Firebase.auth
+            signup.setOnClickListener {
+                signUp()
+            }
         }
     fun signUp() {
 
         val emailUser = email.text.toString()
         val passUser = password.text.toString()
         val confirm = confirm.text.toString()
-        if (emailUser.isEmpty() || passUser.isEmpty()) {
-            Toast.makeText(this,"Email and pass can't be blank",Toast.LENGTH_SHORT).show()
+//
+        if(emailUser.isNotEmpty()&&passUser.isNotEmpty()&&passUser==confirm) {
 
-        }
-        if(passUser!=confirm){
-            Toast.makeText(this,"Password and confirm pass don't match",Toast.LENGTH_SHORT).show()
+            auth.createUserWithEmailAndPassword(emailUser, passUser)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val user: FirebaseUser? = auth.getCurrentUser()
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    } else {
+                        println(task.exception.toString())
+                        Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
 
-
-        }
-        register.createUserWithEmailAndPassword(emailUser,passUser).addOnCompleteListener(this){
-            if(it.isSuccessful){
-                Toast.makeText(this,"Successfully",Toast.LENGTH_SHORT).show()
-                finish()
-            }else
-            {
-                Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
-            }
+                }
         }
 
     }
 }
+
+
 
 
 
